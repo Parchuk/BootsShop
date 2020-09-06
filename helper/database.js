@@ -2,6 +2,6 @@ const Sequalize = require("sequelize");
 
 const sequalize = new Sequalize("intershop", "root", "passport123", {
     dialect: "mariadb",
-    host: "localhost",
+    host: "172.17.0.3",
 });
 module.exports = sequalize;
