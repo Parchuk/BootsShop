@@ -1,6 +1,6 @@
 FROM node:latest
 
-MAINTAINER macnaer
+MAINTAINER parchuk
 
 
 WORKDIR /var/www
