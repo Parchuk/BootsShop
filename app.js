@@ -28,5 +28,6 @@ sequalize
     .then((result) => {
         app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
         console.log(result);
+        console.log('dataBase ok!');
     })
     .catch((err) => console.log(err));
