@@ -21,11 +21,11 @@ app.use(express.static(path.join(__dirname, "static")));
 
 app.use(mainRoutes);
 app.use(errorController.get404);
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-// sequalize
-//   .sync()
-//   .then((result) => {
-//     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-//   })
-//   .catch((err) => console.log(err));
+sequalize
+    .sync()
+    .then((result) => {
+        app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    })
+    .catch((err) => console.log(err));
