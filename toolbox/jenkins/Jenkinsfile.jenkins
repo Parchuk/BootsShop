@@ -11,11 +11,11 @@ pipeline  {
         timestamps()
     }
     stages {
-        stage("Create docker image") {
+        stage("Create docker image") { 
             steps {
                 echo 'Creating docker image ...'
                 dir('.'){
-                    sh "docker build -t macnaer/bootshop . "
+                    sh "docker build -t parchuk/bootshop . "
                 }
             }
         }
