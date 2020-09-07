@@ -1,7 +1,7 @@
 const Sequalize = require("sequelize");
 
-const sequalize = new Sequalize("intershop", "root", "passport123", {
+const sequalize = new Sequalize("intershop", "parchuk", "12345678", {
     dialect: "mysql",
-    host: "localhost",
+    host: "172.17.0.2",
 });
 module.exports = sequalize;
