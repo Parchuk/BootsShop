@@ -1,3 +1,5 @@
+
+
 const Sequalize = require("sequelize");
 
 const sequalize = new Sequalize("intershop", "parchuk", "12345678", {
