@@ -1,8 +1,8 @@
 const Sequalize = require("sequelize");
-
-const sequalize = new Sequalize("intershop", "parchuk", "12345678", {
+const { DATABASENAME, PASSWORD, USERNAME, HOSTNAME } = require('config.js');
+const sequalize = new Sequalize(DATABASENAME, USERNAME, PASSWORD, {
     dialect: "mysql",
-    host: "172.17.0.3",
+    host: HOSTNAME,
 });
 module.exports = sequalize;
 
