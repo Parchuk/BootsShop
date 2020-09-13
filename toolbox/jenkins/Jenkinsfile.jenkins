@@ -55,21 +55,11 @@ pipeline  {
         }
         stage("docker run") {
             steps {
-                echo " ============== starting bootshop server =================="
+                echo " ============== starting chatterbox server =================="
                 sh '''
                 docker run -d --restart=always --name bootshop2 -p 80:8000 parchuk/bootshop
                 '''
             }
-        }
-        stage("docker run") {
-           steps {
-               echo " ============== starting bootshop server =================="
-                withCredentials([usernamePassword(credentialsId: 'DB-Credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-               sh '''
-               docker run -e DB_ACCESS_KEY_ID=$USERNAME -e DB_SECRET_ACCESS_KEY=$PASSWORD -d --restart=always --name dfo macnaer/dfo
-               '''
-                }
-           }
         }
 
     }
