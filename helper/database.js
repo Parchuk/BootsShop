@@ -5,7 +5,7 @@ const Sequalize = require("sequelize");
 //     host: HOSTNAME,
 // });
 
-const sequalize = new Sequalize('intershop', 'parchuk', '12345678', {
+const sequalize = new Sequalize('intershop', DB_ACCESS_KEY_ID = $USERNAME, DB_SECRET_ACCESS_KEY = $PASSWORD, {
     dialect: "mysql",
     host: '172.17.0.2',
 });
