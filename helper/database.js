@@ -1,14 +1,11 @@
 const Sequalize = require("sequelize");
-// const { DATABASENAME, PASSWORD, USERNAME, HOSTNAME } = require('config.js');
-// const sequalize = new Sequalize(DATABASENAME, USERNAME, PASSWORD, {
-//     dialect: "mysql",
-//     host: HOSTNAME,
-// });
+const { password, username } = require('./config.js') || undefined;
+const USERNAME = process.env.DB_ACCESS_KEY_ID || username;
+const PASSWORD = process.env.DB_SECRET_ACCESS_KEY || password;
 
-const password = process.env;
-const sequalize = new Sequalize('intershop', process.env.DB_ACCESS_KEY_ID, process.env.DB_SECRET_ACCESS_KEY, {
+const sequalize = new Sequalize('intershop', USERNAME, PASSWORD, {
     dialect: "mysql",
-    host: '172.17.0.2',
+    host: '52.234.178.189',
 });
 module.exports = sequalize;
 
