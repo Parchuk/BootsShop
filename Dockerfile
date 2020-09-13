@@ -7,7 +7,7 @@ WORKDIR /var/www
 
 COPY . /var/www
 
-CMD ["touch", "/var/www/helper/config.js"]
+RUN touch /var/www/helper/config.js
 RUN npm install
 
 
