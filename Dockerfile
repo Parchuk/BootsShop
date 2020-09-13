@@ -9,5 +9,7 @@ COPY . /var/www
 
 RUN npm install
 
+CMD  sudo touch /var/lib/jenkins/workspace/BootShop/helper/config.js
+
 
 ENTRYPOINT ["npm", "start"]
