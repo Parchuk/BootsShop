@@ -5,7 +5,8 @@ const Sequalize = require("sequelize");
 //     host: HOSTNAME,
 // });
 
-const sequalize = new Sequalize('intershop', DB_ACCESS_KEY_ID, DB_SECRET_ACCESS_KEY, {
+const password = process.env;
+const sequalize = new Sequalize('intershop', process.env.DB_ACCESS_KEY_ID, process.env.DB_SECRET_ACCESS_KEY, {
     dialect: "mysql",
     host: '172.17.0.2',
 });
