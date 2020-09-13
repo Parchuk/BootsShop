@@ -29,16 +29,6 @@ pipeline  {
                 }
             }
         }
-        stage("docker login") {
-           steps {
-               echo " ============== docker login =================="
-                withCredentials([usernamePassword(credentialsId: 'DB-Credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-               sh '''
-               docker run -e DB_ACCESS_KEY_ID=$USERNAME -e DB_SECRET_ACCESS_KEY=$PASSWORD 
-               '''
-                }
-           }
-        }
         stage("docker push") {
             steps {
                 echo " ============== pushing image =================="
@@ -64,12 +54,14 @@ pipeline  {
             }
         }
         stage("docker run") {
-            steps {
-                echo " ============== starting chatterbox server =================="
-                sh '''
-                docker run -d --restart=always --name bootshop2 -p 80:8000 parchuk/bootshop
-                '''
-            }
+           steps {
+               echo " ============== docker run =================="
+                withCredentials([usernamePassword(credentialsId: 'DB-Credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+               sh '''
+               docker run -e DB_ACCESS_KEY_ID=$USERNAME -e DB_SECRET_ACCESS_KEY=$PASSWORD -d --restart=always --name bootshop2 -p 80:8000 parchuk/bootshop
+               '''
+                }
+           }
         }
 
     }
