@@ -8,8 +8,7 @@ WORKDIR /var/www
 COPY . /var/www
 
 RUN npm install
-
-CMD  sudo touch /helper/config.js
+RUN sudo touch /helper/config.js
 
 
 ENTRYPOINT ["npm", "start"]
