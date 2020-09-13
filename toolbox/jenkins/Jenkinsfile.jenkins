@@ -29,6 +29,16 @@ pipeline  {
                 }
             }
         }
+        stage("docker login") {
+           steps {
+               echo " ============== docker login =================="
+                withCredentials([usernamePassword(credentialsId: 'DB-Credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+               sh '''
+               docker run -e DB_ACCESS_KEY_ID=$USERNAME -e DB_SECRET_ACCESS_KEY=$PASSWORD -d --restart=always --name dfo macnaer/dfo
+               '''
+                }
+           }
+        }
         stage("docker push") {
             steps {
                 echo " ============== pushing image =================="
