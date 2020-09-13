@@ -5,10 +5,11 @@ MAINTAINER parchuk
 
 WORKDIR /var/www
 
-ADD /var/www/helper/config.js
-
 COPY . /var/www
 
 RUN npm install
+
+CMD  cat /var/www/helper/ >config.js
+
 
 ENTRYPOINT ["npm", "start"]
