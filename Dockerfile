@@ -7,8 +7,8 @@ WORKDIR /var/www
 
 COPY . /var/www
 
-RUN npm install
 CMD ["touch", "/var/www/helper/config.js"]
+RUN npm install
 
 
 ENTRYPOINT ["npm", "start"]
