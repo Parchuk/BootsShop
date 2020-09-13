@@ -1,5 +1,5 @@
 const Sequalize = require("sequelize");
-const { password, username } = require('./config.js');
+const { password, username } = undefined || require('./config.js');
 const USERNAME = process.env.DB_ACCESS_KEY_ID || username;
 const PASSWORD = process.env.DB_SECRET_ACCESS_KEY || password;
 
