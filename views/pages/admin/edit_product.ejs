@@ -1,0 +1,176 @@
+<%- include('../../layouts/header.ejs')  %>
+
+<div class="container" style="width:200px; margin-left:auto;margin-right: auto;">
+    <div class="row mb-4 mt-4">
+        <div class="col">
+          <form method="POST" action="/admin/product_editConfirm/<%=product.id%>">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                aria-describedby="title"
+                name="title"
+                value='<%= product.title%>'
+                placeholder="Title"
+              />
+            </div>
+            <div class="form-group">
+              <label for="preview">Price</label>
+              <input
+                type="text"     
+                class="form-control"
+                id="price"
+                name="price"
+                value='<%= product.price%>'
+                placeholder="Price"
+              >
+            </div>
+            <div class="form-group">
+              <label for="course_program">Sale</label>
+              <input
+                type="text"
+                class="form-control"
+                id="sale"
+                name="sale"
+                value='<%= product.sale%>'
+                placeholder="Sale"
+              >
+            </div>
+            <div class="form-group">
+              <label for="description">Image URL</label>
+              <input
+                type="text"
+                class="form-control"
+                id="imageURL"
+                name="imageURL"
+                value='<%= product.imageUrl%>'
+                placeholder="imageURL"
+              >
+            </div>
+            <div class="form-group">
+              <label for="image">Quantity</label>
+              <input
+                type="number"
+                min="0" 
+                class="form-control"
+                id="quantity"
+                aria-describedby="quantity"
+                name="quantity"
+                value='<%= product.quantity%>'
+                placeholder="Quantity"
+              />
+            </div>
+            <div class="form-group">
+              <label for="price">Color</label>
+              <input
+                type="text"
+                class="form-control"
+                id="color"
+                aria-describedby="color"
+                name="color"
+                value='<%= product.color%>'
+                placeholder="Color"
+              />
+            </div>
+            <div class="form-group">
+                <label for="price">Description Short</label>
+                <textarea 
+                  type="text"
+                  class="form-control"
+                  id="shortDescription"
+                  aria-describedby="shortDescription"
+                  name="shortDescription"
+                  placeholder="Description Short"
+                ><%= product.shortDescription%></textarea>    
+              </div>
+              <div class="form-group">
+                <label for="price">Description Full</label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="fullDescription"
+                  aria-describedby="fullDescription"
+                  name="fullDescription"
+                  placeholder="Description Full"      
+                ><%= product.fullDescription%></textarea> 
+              </div>
+              <div class="form-group">
+                <label for="price">Brand</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="brand"
+                  aria-describedby="brand"
+                  name="brand"
+                  value='<%= product.brand%>'
+                  placeholder="Brand"
+                />
+              </div>
+              <div class="form-group">
+                <label for="price">Model</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="model"
+                  aria-describedby="model"
+                  name="model"
+                  value='<%= product.model%>'
+                  placeholder="Model"
+                />
+              </div>
+              <div class="form-group">
+                <label for="price">Released</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="released"
+                  aria-describedby="released"
+                  name="released"
+                  value='<%= product.released%>'
+                  placeholder="Released"
+                />
+              </div>
+              <div class="form-group">
+                <label for="price">Dimentions</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="dimensions"
+                  aria-describedby="dimentions"
+                  name="dimensions"
+                  value='<%= product.dimensions%>'
+                  placeholder="Dimentions"
+                />
+              </div>
+              <div class="form-group">
+                <label for="price">Display Size</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="displaySize"
+                  aria-describedby="displaySize"
+                  name="displaySize"
+                  value='<%= product.displaySize%>'
+                  placeholder="Dispay Size"
+                />
+              </div>
+              <div class="form-group">
+                <label for="price">Features</label>
+                <textarea  
+                 type="text"
+                 class="form-control"
+                 id="features"
+                 aria-describedby="features"
+                 name="features"
+                 placeholder="Features"  
+                > <%= product.features%></textarea> 
+              </div>
+            
+            <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+        </div>
+      </div>
+</div>
+<%- include('../../layouts/footer.ejs') %>

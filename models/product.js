@@ -1,6 +1,5 @@
-const Sequelize = require('sequelize');
-const sequalize = require('../helper/database');
-const sequelize = require('../helper/database');
+const Sequelize = require("sequelize");
+const sequelize = require("../helper/database");
 
 const Product = sequelize.define("product", {
     id: {
@@ -12,18 +11,16 @@ const Product = sequelize.define("product", {
     title: Sequelize.STRING,
     price: {
         type: Sequelize.DOUBLE,
-        allowNull: false,
+        allowNull: false
     },
-    sale: {
-        type: Sequelize.DOUBLE,
-    },
+    sale: Sequelize.DOUBLE,
     imageUrl: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
     },
     quantity: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
     },
     color: Sequelize.STRING,
     shortDescription: {
@@ -49,12 +46,11 @@ const Product = sequelize.define("product", {
         type: Sequelize.STRING
     },
     displaySize: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
     },
     features: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
     }
-
 });
 
 module.exports = Product;

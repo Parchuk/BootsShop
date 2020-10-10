@@ -1,0 +1,79 @@
+<%- include('../../layouts/header.ejs')  %>
+<div id="mainBody">
+    <div class="container">
+        <div class="row" style="display: flex;">
+            <ul style="list-style-type:none;" id="sideManu" class="nav nav-tabs nav-stacked">
+                <li><a href="/admin/add_product"><i class="icon-chevron-right"></i>Add product</a></li>
+                <li><a href="/admin"><i class="icon-chevron-right"></i>Edit & Delete products</a></li>
+                <li><a href="/admin/orders"><i class="icon-chevron-right"></i>All orders</a></li>
+            </ul>
+            <div class="span9">
+                <ul class="breadcrumb">
+                    <li><a href="/admin_page">admin</a> <span class="divider">/</span></li>
+                    <li class="active"> Orders</li>
+                </ul>
+                <h3> Orders</h3>
+                <hr class="soft" />
+
+                <% if (productsItem.length > 0) { %>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Description</th>
+                            <th>Quantity/Update</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% productsItem.forEach( product => { %>
+                        <tr>
+                            <td> <img width="60" src="<%= product.imageUrl %>" alt="<%= product.title %>" /></td>
+                            <td><%= product.shortDescription %></td>
+                            <td>
+                                <div class="input-append"><input class="span1" style="max-width:34px"
+                                        value="<%= product.orderItem.quantity %>" id="appendedInputButtons" size="16"
+                                        type="text">
+                                    <form action="/minus-cart-product-admin" method="POST"
+                                        style="display: inline-block;">
+                                        <button class="btn" type="submit"><i class="icon-minus"></i></button>
+                                        <input type="hidden" name="productId" value="<%= product.id %>">
+                                    </form>
+                                    <form action="/plus-cart-product-admin" method="POST"
+                                        style="display: inline-block;">
+                                        <button class="btn" type="submit"><i class="icon-plus"></i></button>
+                                        <input type="hidden" name="productId" value="<%= product.id %>">
+                                    </form>
+                                    <form action="/remove-cart-product-admin" method="POST"
+                                        style="display: inline-block;">
+                                        <button class="btn btn-danger" type="submit"><i
+                                                class="icon-remove icon-white"></i></button>
+                                        <input type="hidden" name="productId" value="<%= product.id %>">
+                                    </form>
+                                </div>
+                            </td>
+                            <td><%= product.price %></td>
+                            <td><%= product.sale %></td>
+                            <td><%= product.price * product.orderItem.quantity %></td>
+                            <% total += product.price * product.orderItem.quantity %>
+                        </tr>
+                        <% }) %>
+
+                        <tr>
+                            <td colspan="6" style="text-align:right"><strong>TOTAL =</strong></td>
+                            <td class="label label-important" style="display:block"> <strong> <%= total %> </strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <% } else { %>
+                <h2>No orders found.</h2>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MainBody End ============================= -->
+<%- include('../../layouts/footer.ejs') %>
