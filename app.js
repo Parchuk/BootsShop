@@ -11,11 +11,11 @@ const csrf = require("csurf");
 // include variables
 const { USERNAME, PASSWORD } = require('./helper/database');
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 const app = express();
 
 // mongoDB connection string
-const MONGO_URL = `mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.imqbw.mongodb.net/bootshop?retryWrites=true&w=majority`;
+const MONGO_URL = `mongodb+srv://Parchuk:qwerty123@cluster0.imqbw.mongodb.net/bootshop?retryWrites=true&w=majority`;
 
 // create mongodb store
 const store = new MongoDBStore({
