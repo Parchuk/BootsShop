@@ -1,0 +1,132 @@
+<%- include('../../layouts/header.ejs') %>
+
+<div id="mainBody">
+  <div class="container">
+    <div class="row">
+      <%- include('../../layouts/sidebar.ejs') %>
+
+      <div class="span9">
+        <ul class="breadcrumb">
+          <li><a href="/">Home</a> <span class="divider">/</span></li>
+          <li class="active">Orders</li>
+        </ul>
+        <h3>
+          Orders<a href="/" class="btn btn-large pull-right"
+            ><i class="icon-arrow-left"></i> Continue Shopping
+          </a>
+        </h3>
+        <hr class="soft" />
+
+        <% if (orders.length > 0) { %>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Description</th>
+              <th>Quantity/Update</th>
+              <th>Price</th>
+              <th>Discount</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% orders.forEach( order => { %> <% order.products.forEach(product => { %>
+            <tr>
+              <td>
+                <img
+                  width="60"
+                  src="<%= product.product.imageUrl %>"
+                  alt="<%= product.product.title %>"
+                />
+              </td>
+              <td><%= product.product.shortDescription %></td>
+              <td>
+                <div class="input-append">
+                  <input
+                    class="span1"
+                    value="<%= product.quantity %>"
+                    id="appendedInputButtons"
+                    size="16"
+                    type="text"
+                    disabled
+                  />
+                  <form
+                    action="/minus-cart-product-admin"
+                    method="POST"
+                    style="display: inline-block"
+                  >
+                    <button class="btn" type="submit"><i class="icon-minus"></i></button>
+                    <input type="hidden" name="productId" value="<%= product.id %>" />
+                    <input type="hidden" name="orderId" value="<%= order.id %>" />
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                  </form>
+                  <form
+                    action="/plus-cart-product-admin"
+                    method="POST"
+                    style="display: inline-block"
+                  >
+                    <button class="btn" type="submit"><i class="icon-plus"></i></button>
+                    <input type="hidden" name="productId" value="<%= product.id %>" />
+                    <input type="hidden" name="orderId" value="<%= order.id %>" />
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                  </form>
+                  <form
+                    action="/remove-cart-product-admin"
+                    method="POST"
+                    style="display: inline-block"
+                  >
+                    <button class="btn btn-danger" type="submit">
+                      <i class="icon-remove icon-white"></i>
+                    </button>
+                    <input type="hidden" name="productId" value="<%= product._id %>" />
+                    <input type="hidden" name="orderId" value="<%= order.id %>" />
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                  </form>
+                </div>
+              </td>
+              <td><%= product.product.price %></td>
+              <td><%= product.product.sale %></td>
+              <td colspan="2"><%= product.product.price * product.quantity %></td>
+              <% total += product.product.price * product.quantity %>
+            </tr>
+
+            <% }) %>
+
+            <tr>
+              <td colspan="3">
+                <h5 style="margin-bottom:50px; display: inline-block; width: 100%;">
+                  Created: <%= order.createdAt%>
+                  <hr />
+                  By <span style="font-size: 20px"><%= order.user.name %></span>
+                </h5>
+              </td>
+              <td colspan="2" style="text-align: right"><strong>TOTAL =</strong></td>
+              <td class="label label-important" style="display: block">
+                <strong> <%= total %> </strong>
+              </td>
+              <td>
+                                  <form
+                  action="/remove-order-product-admin"
+                  method="POST"
+                  style="display: inline-block"
+                >
+                  <button class="btn btn-danger" type="submit">
+                    <i class="icon-remove icon-white"></i>
+                  </button>
+                  <input type="hidden" name="orderId" value="<%= order.id %>" />
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                </form>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <% } else { %>
+        <h2>No orders found.</h2>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MainBody End ============================= -->
+<%- include('../../layouts/footer.ejs') %>

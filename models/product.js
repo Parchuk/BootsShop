@@ -1,60 +1,66 @@
-const Sequelize = require('sequelize');
-const sequalize = require('../helper/database');
-const sequelize = require('../helper/database');
 
-const Product = sequelize.define("product", {
-    id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
+const mongoose = require("mongoose");
+
+const Schema = mongoose.Schema;
+
+const productSchema = new Schema({
+    title: {
+        type: String,
+        required: true,
     },
-    title: Sequelize.STRING,
     price: {
-        type: Sequelize.DOUBLE,
-        allowNull: false,
+        type: Number,
+        required: true,
     },
     sale: {
-        type: Sequelize.DOUBLE,
+        type: Number,
+        required: false,
     },
     imageUrl: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        type: String,
+        required: true,
     },
     quantity: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+        type: Number,
+        required: true,
     },
-    color: Sequelize.STRING,
+    color: {
+        type: String,
+        required: true,
+    },
     shortDescription: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: String,
+        required: true,
     },
     fullDescription: {
-        type: Sequelize.TEXT,
-        allowNull: false
+        type: String,
+        required: true,
     },
     brand: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: String,
+        required: true,
     },
     model: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: String,
+        required: true,
     },
     released: {
-        type: Sequelize.DATE
+        type: String,
     },
     dimensions: {
-        type: Sequelize.STRING
+        type: String,
     },
     displaySize: {
-        type: Sequelize.STRING
+        type: String,
     },
     features: {
-        type: Sequelize.STRING
+        type: String,
+        required: true,
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
     }
-
 });
-
-module.exports = Product;
+module.exports = mongoose.model("Product", productSchema);

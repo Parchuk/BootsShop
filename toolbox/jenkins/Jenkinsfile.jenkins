@@ -15,7 +15,7 @@ pipeline  {
             steps {
                 echo 'Creating docker image ...'
                 dir('.'){
-                    sh "docker build -t parchuk/bootshop . "
+                    sh "docker build -t parchuk/frontend94 . "
                 }
             }
         }
@@ -33,7 +33,7 @@ pipeline  {
             steps {
                 echo " ============== pushing image =================="
                 sh '''
-                docker push parchuk/bootshop:latest
+                docker push parchuk/frontend94:latest
                 '''
             }
         }
@@ -41,7 +41,7 @@ pipeline  {
             steps {
                 echo " ============== stoping all images =================="
                 sh '''
-                docker stop bootshop2
+                docker stop bootshop
                 '''
             }
         } 
@@ -49,7 +49,7 @@ pipeline  {
             steps {
                 echo " ============== removing all docker containers =================="
                 sh '''
-                docker rm bootshop2
+                docker rm bootshop
                 '''
             }
         }
@@ -58,7 +58,7 @@ pipeline  {
                echo " ============== docker run =================="
                 withCredentials([usernamePassword(credentialsId: 'DB-Credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                sh '''
-               docker run -e DB_ACCESS_KEY_ID=$USERNAME -e DB_SECRET_ACCESS_KEY=$PASSWORD -d --restart=always --name bootshop2 -p 80:8000 parchuk/bootshop
+               docker run -e DB_ACCESS_KEY_ID=$USERNAME -e DB_SECRET_ACCESS_KEY=$PASSWORD -d --restart=always --name bootshop -p 80:8000 parchuk/frontend94
                '''
                 }
            }
